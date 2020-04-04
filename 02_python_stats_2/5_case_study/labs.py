@@ -2,6 +2,9 @@ import os
 udf = "02_python_stats_2/1_4_old_labs/user_defined_functions.py"
 exec(open(os.path.abspath(udf)).read())
 
+# Set seed used in exercises
+np.random.seed(42)
+
 ################################################################################
 ############################# Data for Ex. 2 ###################################
 ################################################################################
@@ -62,14 +65,112 @@ _ = plt.legend(('1975', '2012'), loc='lower right')
 plt.show()
 
 
+################################################################################
+################ Ex. 4: Parameter estimates of beak depths #####################
+################################################################################
+
+# Compute the difference of the sample means: mean_diff
+mean_diff = np.mean(bd_1975) - np.mean(bd_2012)
+
+# Get bootstrap replicates of means
+bs_replicates_1975 = draw_bs_reps(bd_1975, np.mean, 10000)
+bs_replicates_2012 = draw_bs_reps(bd_2012, np.mean, 10000)
+
+# Compute samples of difference of means: bs_diff_replicates
+bs_diff_replicates = bs_replicates_2012 - bs_replicates_1975
+
+# Compute 95% confidence interval: conf_int
+conf_int = np.percentile(bs_diff_replicates, [2.5, 97.5])
+
+# Print the results
+print('difference of means =', mean_diff, 'mm')
+print('95% confidence interval =', conf_int, 'mm')
 
 
+################################################################################
+############# Ex. 5: Hypothesis test: Are beaks deeper in 2012? ################
+################################################################################
 
+# Compute mean of combined data set: combined_mean
+combined_mean = np.mean(np.concatenate((bd_1975, bd_2012)))
 
+# Shift the samples
+bd_1975_shifted = bd_1975 - np.mean(bd_1975) + combined_mean
+bd_2012_shifted = bd_2012 - np.mean(bd_2012) + combined_mean
 
+# Get bootstrap replicates of shifted data sets
+bs_replicates_1975 = draw_bs_reps(bd_1975_shifted, np.mean, 10_000)
+bs_replicates_2012 = draw_bs_reps(bd_2012_shifted, np.mean, 10_000)
 
+# Compute replicates of difference of means: bs_diff_replicates
+bs_diff_replicates = bs_replicates_2012 - bs_replicates_1975
 
+# Compute the p-value
+p = np.sum(bs_diff_replicates >= mean_diff) / len(bs_diff_replicates)
 
+# Print p-value
+print('p =', p)
+
+################################################################################
+############################# Data for Ex. 7 ###################################
+################################################################################
+
+df1.rename(columns = {'Beak length, mm':'beak_length'}, inplace = True)
+df2.rename(columns = {'blength':'beak_length'}, inplace = True)
+bl_1975 = df1['beak_length'].values
+bl_2012 = df2['beak_length'].values
+
+################################################################################
+################### Ex. 7: EDA of beak length and depth ########################
+################################################################################
+
+# Make scatter plot of 1975 data
+_ = plt.plot(bl_1975, bd_1975, marker='.',
+             linestyle='none', color='blue', alpha=0.5)
+
+# Make scatter plot of 2012 data
+_ = plt.plot(bl_2012, bd_2012, marker='.',
+             linestyle='none', color='red', alpha=0.5)
+
+# Label axes and make legend
+_ = plt.xlabel('beak length (mm)')
+_ = plt.ylabel('beak depth (mm)')
+_ = plt.legend(('1975', '2012'), loc='upper left')
+
+# Show the plot
+plt.show()
+
+################################################################################
+####################### Ex. 8: Linear regressions ##############################
+################################################################################
+
+# Compute the linear regressions
+slope_1975, intercept_1975 = np.polyfit(bl_1975, bd_1975, 1)
+slope_2012, intercept_2012 = np.polyfit(bl_2012, bd_2012, 1)
+
+# Perform pairs bootstrap for the linear regressions
+bs_slope_reps_1975, bs_intercept_reps_1975 = \
+  draw_bs_pairs_linreg(bl_1975, bd_1975, 1000)
+bs_slope_reps_2012, bs_intercept_reps_2012 = \
+  draw_bs_pairs_linreg(bl_2012, bd_2012, 1000)
+
+# Compute confidence intervals of slopes
+slope_conf_int_1975 = np.percentile(bs_slope_reps_1975, [2.5, 97.5])
+slope_conf_int_2012 = np.percentile(bs_slope_reps_2012, [2.5, 97.5])
+intercept_conf_int_1975 = np.percentile(
+  bs_intercept_reps_1975, [2.5, 97.5])
+intercept_conf_int_2012 = np.percentile(
+  bs_intercept_reps_2012, [2.5, 97.5])
+
+# Print the results
+print('1975: slope =', slope_1975,
+      'conf int =', slope_conf_int_1975)
+print('1975: intercept =', intercept_1975,
+      'conf int =', intercept_conf_int_1975)
+print('2012: slope =', slope_2012,
+      'conf int =', slope_conf_int_2012)
+print('2012: intercept =', intercept_2012,
+      'conf int =', intercept_conf_int_2012)
 
 
 
