@@ -2,3 +2,6 @@ ipython
 numpy
 matplotlib
 seaborn
+
+numba
+dc_stat_think

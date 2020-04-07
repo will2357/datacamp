@@ -1,5 +1,5 @@
 import os
-udf = "02_python_stats_2/1_4_old_labs/user_defined_functions.py"
+udf = "app_ml_techniques_risk/02_python_stats_2/1_4_old_labs/user_defined_functions.py"
 exec(open(os.path.abspath(udf)).read())
 
 # Set seed used in exercises
@@ -9,12 +9,12 @@ np.random.seed(42)
 ############################# Data for Ex. 2 ###################################
 ################################################################################
 
-df1 = pd.read_csv("02_python_stats_2/_datasets/finch_beaks_1975.csv")
+df1 = pd.read_csv("app_ml_techniques_risk/02_python_stats_2/_datasets/finch_beaks_1975.csv")
 df1['year'] = '1975'
 df1.rename(columns = {'Beak depth, mm':'beak_depth'}, inplace = True)
 df1_final = df1[['beak_depth', 'year']]
 
-df2 = pd.read_csv("02_python_stats_2/_datasets/finch_beaks_2012.csv")
+df2 = pd.read_csv("app_ml_techniques_risk/02_python_stats_2/_datasets/finch_beaks_2012.csv")
 df2['year'] = '2012'
 df2.rename(columns = {'bdepth':'beak_depth'}, inplace = True)
 df2_final = df2[['beak_depth', 'year']]
@@ -235,12 +235,12 @@ print('2012: mean ratio =', mean_ratio_2012,
 ############################# Data for Ex. 13 ###################################
 ################################################################################
 sbdh = pd.read_csv(
-  "02_python_stats_2/_datasets/scandens_beak_depth_heredity.csv")
+  "app_ml_techniques_risk/02_python_stats_2/_datasets/scandens_beak_depth_heredity.csv")
 bd_parent_scandens    = sbdh['mid_parent'].values
 bd_offspring_scandens = sbdh['mid_offspring'].values
 
 fbdh = pd.read_csv(
-  "02_python_stats_2/_datasets/fortis_beak_depth_heredity.csv")
+  "app_ml_techniques_risk/02_python_stats_2/_datasets/fortis_beak_depth_heredity.csv")
 fbdh['Mean Parent BD'] = fbdh[['Male BD','Female BD']].mean(axis=1)
 bd_parent_fortis       = fbdh['Mean Parent BD'].values
 bd_offspring_fortis    = fbdh['Mid-offspr'].values
@@ -363,7 +363,7 @@ print('p-val =', p)
 
 ################################################################################
 ################################### Run: #######################################
-############### ipython 02_python_stats_2/5_case_study/labs.py #################
+#### ipython app_ml_techniques_risk/02_python_stats_2/5_case_study/labs.py #####
 ################################################################################
 
 
