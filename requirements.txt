@@ -3,5 +3,9 @@ numpy
 matplotlib
 seaborn
 
+### For Python Stats Courses' User Defined Functions
 numba
 dc_stat_think
+
+# ML Techniques - Supervised Learning
+scikit-learn
