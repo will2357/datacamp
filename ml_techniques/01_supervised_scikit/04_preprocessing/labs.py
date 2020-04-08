@@ -10,7 +10,7 @@ import seaborn as sns
 plt.style.use('ggplot')
 
 # Open shared user defined functions
-udf = "ml_techniques/udfs.py"
+udf = "ml_techniques/01_supervised_scikit/udfs.py"
 exec(open(os.path.abspath(udf)).read())
 
 ################################################################################
@@ -294,5 +294,5 @@ print("Tuned ElasticNet R squared: {}".format(r2))
 
 ################################################################################
 ################################### Run: #######################################
-##### ipython ml_techniques/01_supervised_scikit/4_preprocessing/labs.py #######
+##### ipython ml_techniques/01_supervised_scikit/04_preprocessing/labs.py ######
 ################################################################################

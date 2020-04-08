@@ -10,7 +10,7 @@ import seaborn as sns
 plt.style.use('ggplot')
 
 # Open shared user defined functions
-udf = "ml_techniques/udfs.py"
+udf = "ml_techniques/01_supervised_scikit/udfs.py"
 exec(open(os.path.abspath(udf)).read())
 
 # Set seed used in exercises
@@ -226,5 +226,5 @@ plt.show()
 
 ################################################################################
 ################################### Run: #######################################
-##### ipython ml_techniques/01_supervised_scikit/1_classification/labs.py ######
+##### ipython ml_techniques/01_supervised_scikit/01_classification/labs.py #####
 ################################################################################

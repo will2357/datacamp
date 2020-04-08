@@ -10,7 +10,7 @@ import seaborn as sns
 plt.style.use('ggplot')
 
 # Open shared user defined functions
-udf = "ml_techniques/udfs.py"
+udf = "ml_techniques/01_supervised_scikit/udfs.py"
 exec(open(os.path.abspath(udf)).read())
 
 # Set seed used in exercises
@@ -249,5 +249,5 @@ print("Tuned ElasticNet MSE: {}".format(mse))
 
 ################################################################################
 ################################### Run: #######################################
-###### ipython ml_techniques/01_supervised_scikit/3_fine_tuning/labs.py ########
+###### ipython ml_techniques/01_supervised_scikit/03_fine_tuning/labs.py #######
 ################################################################################

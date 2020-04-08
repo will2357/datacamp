@@ -10,7 +10,7 @@ import seaborn as sns
 plt.style.use('ggplot')
 
 # Open shared user defined functions
-udf = "ml_techniques/udfs.py"
+udf = "ml_techniques/01_supervised_scikit/udfs.py"
 exec(open(os.path.abspath(udf)).read())
 
 # Set seed used in exercises
@@ -216,5 +216,5 @@ display_plot(ridge_scores, ridge_scores_std)
 
 ################################################################################
 ################################### Run: #######################################
-####### ipython ml_techniques/01_supervised_scikit/2_regression/labs.py ########
+####### ipython ml_techniques/01_supervised_scikit/02_regression/labs.py #######
 ################################################################################
