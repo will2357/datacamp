@@ -9,3 +9,10 @@ dc_stat_think
 
 # ML Techniques - Supervised Learning
 scikit-learn==0.21.3
+
+# ML Techniques - Deep Learning
+tensorflow
+setuptools>=41.0.0
+keras
+h5py
+pydot
