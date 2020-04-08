@@ -101,7 +101,6 @@ plt.show()
 ########################## Ex. 8: AUC computation ##############################
 ################################################################################
 
-
 # To minimize: STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 logreg = LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
                             intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
